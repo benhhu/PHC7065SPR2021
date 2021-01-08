@@ -10,7 +10,7 @@ This is an R crash couse, adpated and revised based on an [online tutorial](http
 Let's firstly setup a working directory
 
 ```{r setup}
-knitr::opts_knit$set(root.dir="/home/vmuser/Desktop/PHC7065SPR2020/WK2")
+knitr::opts_knit$set(root.dir="/home/vmuser/Desktop/PHC7065SPR2021/WK2")
 ```
 
 We can assign objects using "<-"
