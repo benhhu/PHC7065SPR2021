@@ -1,0 +1,133 @@
+####################
+#Start MySQL server#
+####################
+sudo systemctl start mysql
+
+#####
+#FYI#
+#####
+#stop/restart mysql server
+sudo systemctl stop mysql
+sudo systemctl restart mysql
+
+###########################
+#create a new user account#
+###########################
+
+#first, access mysql console using the root account. Enter password: vmuser
+sudo mysql -u root
+
+#now, let's create a user "phc7065" and set "vmuser" as the password
+mysql> CREATE USER 'phc7065'@'localhost' IDENTIFIED BY 'vmuser';
+
+#grant all privileges to the user "phc7065" on all databases:
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'phc7065'@'localhost';
+
+#quit mysql console
+mysql> quit;
+
+##################################################
+#Access mysql console using the account "phc7065"#
+##################################################
+
+#start mysql, password: vmuser
+mysql -u phc7065 -p
+
+#Show all databases in the mysql prompt
+mysql> SHOW DATABASES;
+
+#Create a new database called PHC7065DB
+mysql> CREATE DATABASE PHC7065DB;
+
+#Create another database called TEST
+mysql> CREATE DATABASE TEST;
+
+#DROP the database TEST
+mysql> DROP DATABASE TEST;
+
+#SELECT the database PHC7065DB
+mysql> USE PHC7065DB;
+
+#Show all tables in the database PHC7065DB
+mysql> SHOW TABLES;
+
+#Create a table called TESTTBL
+mysql> CREATE TABLE TESTTBL(
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> title VARCHAR(100) NOT NULL,
+    -> author VARCHAR(40) NOT NULL,
+    -> date DATE,
+    -> PRIMARY KEY ( id )
+    -> );
+
+#Check if the table is created
+mysql> SHOW TABLES;
+
+#Check if there is any data inside this table
+mysql> SELECT * FROM TESTTBL;
+
+#Insert some data (one row) to the table
+mysql> INSERT into TESTTBL
+    -> VALUES (1,'title 1','author 1','2017-01-21');
+
+#Insert another row to the table, but now we only insert data for the columns "title", "author", and "date"
+mysql> INSERT into TESTTBL(title,author,date)
+    -> VALUES ('title 2','author 2','2017-02-21');
+
+#Let's check how the table looks like
+mysql> SELECT * FROM TESTTBL;
+
+#What if we only insert data for the columns "title"?
+mysql> INSERT into TESTTBL(title)
+    -> VALUES ('title 3');
+
+#We got an error, because we specifically defined that author cannot be null. Let's try this instead
+mysql> INSERT into TESTTBL(title,author)
+    -> VALUES ('title 3','author 3');
+
+#check the table again
+mysql> SELECT * FROM TESTTBL;
+
+#how to insert multiple rows?
+mysql> INSERT into TESTTBL(title,author)
+    -> VALUES 
+    -> ('title 4','author 4'),
+    -> ('title 5','author 5'),
+    -> ('title 6','author 6'),
+    -> ('title 7','author 7')
+    -> ;
+
+#check the table again
+mysql> SELECT * FROM TESTTBL;
+
+#we will now use an R package to connect to MySQL so that we can do all the coding in the same place
+
+#####
+#FYI#
+#####
+
+##################################
+#Export and Import Database/Table#
+##################################
+
+#Export a sql database (quit the mysql prompt first)
+mysqldump -u phc7065 -p PHC7065DB > phc7065db.sql
+
+#Export a single table
+mysqldump -u phc7065 -p PHC7065DB TESTTBL > testtbl.sql
+
+#now, let's drop the table TESTTBL
+mysql> USE PHC7065DB;
+mysql> DROP TABLE TESTTBL;
+mysql> SHOW TABLES;
+
+#let's now import the exported table
+mysql -u phc7065 -p PHC7065DB < testtbl.sql
+
+#drop the database
+mysql> DROP DATABASE PHC7065DB;
+
+#import the database
+mysql> CREATE DATABASE PHC7065DB;
+mysql> USE PHC7065DB;
+mysql> source /home/vmuser/Desktop/PHC7065SPR2021/WK3/phc7065db.sql
