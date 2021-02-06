@@ -1,0 +1,90 @@
+---
+title: "Week 4 In-class Exercise"
+output:
+  html_document:
+    df_print: paged
+---
+
+#### Set the working directory
+
+```{r setup}
+knitr::opts_knit$set(root.dir="/home/vmuser/Desktop/PHC7065SPR2021/WK4")
+```
+
+#Question 1
+
+###Use the files "Patient_Drug_Admin_Date.csv" and "Patient_Drug390_Test_Flag.csv". We would like to know whether length of treatment and the distribution of HR/HER2 status varies based on the drug that the patient is receiving (whether they are receiving drug 390 or not). Write codes to compare: 1) the length of treatment by drug (drug 390 vs. other), and 2) the HR/HER status distribution by drug (drug 390 vs. other).
+#### Assuming that the treatment length (unit: day) is determined by the length between the first admin_date and the last admin_date. For those with only one administer record, the length is therefore 0.
+#### Note that patients with breast cancer can be categorized into 4 groups, based on their HER2 status and HR status (i.e. HR+ if either ER or PR is positive, HR- if both ER and PR are negative)
+
+##### Step 0. Load the "RMySQL" package
+
+```{r}
+
+```
+
+##### Step 1. Import csv files
+
+```{r}
+
+```
+
+##### Step 2. Convert date variables from chr to date (hint: use as.Date() function), and trun the column names to lower case (hint: use tolower() function)
+
+```{r}
+
+```
+
+##### Step 3. Establish the connection to MySQL database, and export the dataframes to MySQL (hint: use dbWriteTable() function to export dataframes)
+
+```{r}
+
+```
+
+##### Step 4. Create a new variable "hr" to indicate HR sttaus using CASE WHEN statements in SQL (hint: you can use dbSendQuery function to execute the query without retrieving the results)
+
+```{r}
+
+```
+
+##### Step 5. Calculate the maximum and minimum of "drug_admin_date" for each patient
+
+```{r}
+
+
+```
+
+##### Step 6. Calculate the length of treatment for each patient
+
+```{r}
+
+```
+
+##### Step 7. Merge the variable "drug_admin_flag" from the "Patient_Drug390_Test_Flag"
+
+```{r}
+
+```
+
+##### Step 8. Calculate the average length of treatment by "drug_admin_flag"
+
+```{r}
+
+```
+
+#Question 2-1
+
+###Use the files "Patient_Doctor_Product_Month.csv" and "Site.csv". Write codes that would generate a table showing the market share of each product by State (of the addresses of the cancer centers - sites) for the year of 2012
+
+```{r}
+
+```
+
+#Question 2-2
+
+###Continuing from question 2-1, there is a concern that some doctors use certain products in this market in off-label manners and you are told to keep strictly only to the Diagnosis code of 162.9 in this market share analysis. Please write the codes which would include the revised definition (use the files "Patient_Doctor_Product_Month.csv", "Patient_Doctor_Month_Diagnosis.csv", and "Site.csv")
+
+```{r}
+
+```
+
