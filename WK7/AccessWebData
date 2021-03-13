@@ -1,0 +1,7 @@
+#Send HTTP request
+
+telnet www.ufl.edu 80
+hello uf
+
+telnet www.ufl.edu 80
+GET http://www.ufl.edu/index.html
