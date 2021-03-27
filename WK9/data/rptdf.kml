@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="rptdf" id="rptdf">
+	<SimpleField name="x" type="int"></SimpleField>
+	<SimpleField name="y" type="float"></SimpleField>
+</Schema>
+<Folder><name>rptdf</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#rptdf">
+		<SimpleData name="x">1</SimpleData>
+		<SimpleData name="y">0.5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>1.0,0.5</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#rptdf">
+		<SimpleData name="x">2</SimpleData>
+		<SimpleData name="y">0.666666666666667</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>2.0,0.666666666666667</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#rptdf">
+		<SimpleData name="x">3</SimpleData>
+		<SimpleData name="y">0.75</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>3.0,0.75</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>
